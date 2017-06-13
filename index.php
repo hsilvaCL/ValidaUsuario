@@ -26,7 +26,12 @@ and open the template in the editor.
         </form>
         <?php 
             }
-        ?>
+            else{
+            ?>
+                <a href="<?=URL?>controlador/cierrasesion.php"> Cerrar Sesión</a>
+            <?php 
+               }
+            ?>
     </body>
     <script type="text/javascript">
         $(document).ready(function(){
