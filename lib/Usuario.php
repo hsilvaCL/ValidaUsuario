@@ -27,10 +27,11 @@ class Usuario{
         $clavemd5=md5($this->clave);
         
         $sql="SELECT * FROM acceso"
-             ."WHERE nomusuario='$this->nomusuario' and pwdusuario='$clavemd5'";
+             ." WHERE nomusuario='$this->nomusuario' and pwdusuario='$clavemd5'";
         
         $resultado=$db->query($sql);
         
+       
         if($resultado->num_rows>=1){
             $this->idusuario=0;
             $this->nombre="";
