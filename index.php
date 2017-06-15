@@ -16,7 +16,17 @@ and open the template in the editor.
     <script src="<?=URL?>js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <body>
         <?php
-            if(!isset($_SESSION["USR"])){
+            if(isset($_SESSION["USR"])){
+        ?>
+        <div><?php
+                $oUsu=$_SESSION["USR"];
+                echo $oUsu->nombre;
+                ?>
+            <a href="<?=URL?>controlador/cierrasesion.php">Cerrar sesión</a>
+        </div>
+        <?php
+        }
+        if(!isset($_SESSION["USR"])){
         ?>
         <form action="<?=URL?>controlador/valida.php" method="post">
             <div><label>Nombre</label><input id="nomusu" type="text" name="nomusu"></div>
@@ -26,12 +36,7 @@ and open the template in the editor.
         </form>
         <?php 
             }
-            else{
-            ?>
-                <a href="<?=URL?>controlador/cierrasesion.php"> Cerrar Sesión</a>
-            <?php 
-               }
-            ?>
+           ?>
     </body>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -47,6 +52,9 @@ and open the template in the editor.
                                    'claveusu':$("#claveusu").val()}
                             ,success:function(resweb){
                                 $('#msjweb').html(resweb);
+                                if(resweb=="Todo Bien"){
+                                    location.href="<?=URL;?>/admin.php";
+                                }
                             }
                         });//Cierre AJAX                     
                  }

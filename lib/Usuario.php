@@ -33,8 +33,9 @@ class Usuario{
         
        
         if($resultado->num_rows>=1){
-            $this->idusuario=0;
-            $this->nombre="";
+            $row = $resultado->fetch_row();
+            $this->idusuario=$row[0];
+            $this->nombre=$row[3];
             return true;
         }
         else{
