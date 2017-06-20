@@ -14,7 +14,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <script src="<?=URL?>js/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <body>
+     <body>
         <?php
             if(isset($_SESSION["USR"])){
         ?>
