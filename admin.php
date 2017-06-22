@@ -28,7 +28,22 @@ exit;
             <?php }?>
             <div id="header"></div>
             <div id="menulateral"><?php include('menu.php');?></div>
-            <div id="contenido"></div>
+            <div id="contenido">
+                <?php
+                 $oListado=new Usuario();
+                 
+                 foreach ($oListado->ListadoArreglo() as $oElemento) {
+                     
+                     echo "<div>".$oElemento->idusuario ."/".utf8_encode($oElemento->nombre)."</div>";
+                 }
+                 echo "<br>";
+                 
+                  while($oElemento=$oListado->Listado()) {
+                     echo "<div>".$oElemento->idusuario ."/".utf8_encode($oElemento->nombre)."</div>";
+                 }
+                ?>
+                
+            </div>
         </div>
         
     </body>

@@ -10,6 +10,7 @@ class Usuario{
     var $nombre;
     var $nomusuario;
     var $clave;
+    var $dbQuery;
     
     public function __construct($usu="",$pwd="") {
         $this->nomusuario=$usu;
@@ -42,5 +43,51 @@ class Usuario{
             return false;
         }
             
+    }
+    public function Listado(){
+        if (!$this->dbQuery){
+            $oConn=new Conexion();
+            if($oConn->Conectar())
+                $db=$oConn->objconn;            
+            else
+                return false;
+            $sql="SELECT * FROM acceso";
+            $this->dbQuery=$db->query($sql);
+        }
+        
+        $row=$this->dbQuery->fetch_assoc();
+        
+        if (!$row) return null;
+        $oUsu=new Usuario();
+        $oUsu->idusuario=$row["IDACCESO"];
+        $oUsu->nombre=$row["NOMBRE"];
+        $oUsu->nomusuario=$row["NOMUSUARIO"];
+        return $oUsu;
+         
+    }
+    
+    public function ListadoArreglo(){
+        $oConn=new Conexion();
+        
+        if($oConn->Conectar())
+            $db=$oConn->objconn;            
+        else
+            return false;
+       
+        $sql="SELECT * FROM acceso";
+        
+        $resultado=$db->query($sql);
+        
+         $i=0;
+         while($row = $resultado->fetch_assoc()){
+               $oUsu=new Usuario();
+               $oUsu->idusuario=$row["IDACCESO"];
+               $oUsu->nombre=$row["NOMBRE"];
+               $oUsu->nomusuario=$row["NOMUSUARIO"];
+             $arrUsuarios[$i]=$oUsu;
+             $i++;
+         }
+         if (isset($arrUsuarios)) return $arrUsuarios; else return null;
+        
     }
 }

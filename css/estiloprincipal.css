@@ -30,6 +30,8 @@ and open the template in the editor.
     width:80%;
     height:400px;
     float:left;
+    font-size: 20px;
+    color :white;
     background-color: blue;
     
 }
